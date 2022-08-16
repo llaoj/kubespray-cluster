@@ -1,0 +1,50 @@
+all:
+  hosts:
+    hde-ceno-1:
+      ansible_host: 10.206.65.152
+      ip: 10.206.65.152
+      access_ip: 10.206.65.152
+    hde-ceno-2:
+      ansible_host: 10.206.65.153
+      ip: 10.206.65.153
+      access_ip: 10.206.65.153
+    hde-ceno-3:
+      ansible_host: 10.206.65.154
+      ip: 10.206.65.154
+      access_ip: 10.206.65.154
+    hde-ceno-4:
+      ansible_host: 10.206.65.155
+      ip: 10.206.65.155
+      access_ip: 10.206.65.155
+    hde-ceno-5:
+      ansible_host: 10.206.65.156
+      ip: 10.206.65.156
+      access_ip: 10.206.65.156
+    hde-ceno-6:
+      ansible_host: 10.206.65.157
+      ip: 10.206.65.157
+      access_ip: 10.206.65.157
+  children:
+    kube_control_plane:
+      hosts:
+        hde-ceno-1:
+        hde-ceno-2:
+    kube_node:
+      hosts:
+        hde-ceno-1:
+        hde-ceno-2:
+        hde-ceno-3:
+        hde-ceno-4:
+        hde-ceno-5:
+        hde-ceno-6:
+    etcd:
+      hosts:
+        hde-ceno-1:
+        hde-ceno-2:
+        hde-ceno-3:
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+    calico_rr:
+      hosts: {}
