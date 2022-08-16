@@ -1,0 +1,18 @@
+[Credentials]
+        language = CH
+        endpoint = oss.aliyuncs.com
+        accessKeyID = your_accesskey_id
+        accessKeySecret = your_accesskey_secret
+        stsToken = your_sts_token
+        outputDir = your_output_dir
+        ramRoleArn = your_ram_role_arn
+[Bucket-Endpoint]
+        bucket1 = endpoint1
+        bucket2 = endpoint2
+        ...
+[Bucket-Cname]
+        bucket1 = cname1
+        bucket2 = cname2
+        ...
+[AkService]
+        ecsAk=http://10.255.255.254/latest/meta-data/Ram/security-credentials/EcsRamRoleTesting
