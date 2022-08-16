@@ -20,11 +20,11 @@ chmod 755 ossutil64
   -k EtC1wYxpuGPx4jVCox9Yuw2FcthDmJ \
   cp temp/files/ oss://rutron/kubernetes/ -ruf --acl=public-read
 
-# copy images to china
-skopeo login -u rutronnet -p AxzkdEMiS7u@6s9 registry.cn-beijing.aliyuncs.com
+echo "Copy images to ACR"
+skopeo login -u rutronnet@163.com -p AxzkdEMiS7u@6s9 registry.cn-beijing.aliyuncs.com
 for image in $(cat temp/images.list); do 
-	image=${image#*/}
-	image=${image/\/_/}
-	echo ${image}
-	# skopeo copy docker://${image} docker://registry.cn-beijing.aliyuncs.com/llaoj_gcr/${image}; 
+	myimage=${image#*/}
+	myimage=registry.cn-beijing.aliyuncs.com/llaoj/${myimage/\//_}
+	echo ${myimage}
+	# skopeo copy docker://${image} docker://${myimage}; 
 done
