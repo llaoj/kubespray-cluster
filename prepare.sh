@@ -12,8 +12,8 @@ cat temp/images.list
 wget -qx -P temp/files -i temp/files.list
 tree temp/
 
-wget https://gosspublic.alicdn.com/ossutil/1.7.13/ossutil64
+wget -q https://gosspublic.alicdn.com/ossutil/1.7.13/ossutil64
 chmod 755 ossutil64
-# ./ossutil64 cp localfolder/ oss://examplebucket/desfolder/ -r
+./ossutil64 -e oss-cn-beijing.aliyuncs.com -i LTAI5tQ4EusZj1ngxtLJqVW2 -k EtC1wYxpuGPx4jVCox9Yuw2FcthDmJ cp temp/files/ oss://rutron/kubernetes/ -r --acl=public-read
 
 
