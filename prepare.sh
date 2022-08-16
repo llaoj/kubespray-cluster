@@ -9,7 +9,7 @@ cd kubespray-2.18.1/contrib/offline
 cat temp/files.list
 cat temp/images.list
 
-wget -x -P temp/files -i temp/files.list
+wget -qx -P temp/files -i temp/files.list
 tree temp/
 
 wget https://gosspublic.alicdn.com/ossutil/1.7.13/ossutil64
