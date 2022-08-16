@@ -1,2 +1,1 @@
-# KubesprayCluster
-
+# Manual for installing k8s using Kubespray
