@@ -28,7 +28,7 @@ flannel_image_repo: "{{ kube_image_repo }}/coreos_flannel"
 calico_node_image_repo: "{{ kube_image_repo }}/calico_node"
 calico_cni_image_repo: "{{ kube_image_repo }}/calico_cni"
 calico_flexvol_image_repo: "{{ kube_image_repo }}/calico_pod2daemon-flexvol"
-calico_policy_image_repo: "{{ kube_image_repo }}/calico_kube-controllers"
+# calico_policy_image_repo: "{{ kube_image_repo }}/calico_kube-controllers"
 calico_typha_image_repo: "{{ kube_image_repo }}/calico_typha"
 weave_kube_image_repo: "{{ kube_image_repo }}/weaveworks_weave-kube"
 weave_npc_image_repo: "{{ kube_image_repo }}/weaveworks_weave-npc"
@@ -63,12 +63,8 @@ cinder_csi_plugin_image_repo: "{{ kube_image_repo }}/k8scloudprovider_cinder-csi
 aws_ebs_csi_plugin_image_repo: "{{ kube_image_repo }}/amazon_aws-ebs-csi-driver"
 dashboard_image_repo: "{{ kube_image_repo }}/kubernetesui_dashboard-amd64"
 dashboard_metrics_scraper_repo: "{{ kube_image_repo }}/kubernetesui_metrics-scraper"
-metallb_speaker_image_repo: 
-
-"{{ kube_image_repo }}/kube-apiserver"
-"{{ kube_image_repo }}/kube-controller-manager"
-"{{ kube_image_repo }}/kube-scheduler"
-"{{ kube_image_repo }}/kube-proxy"
+# metallb_speaker_image_repo: "{{ quay_image_repo }}/metallb/speaker"
+# metallb_controller_image_repo: "{{ quay_image_repo }}/metallb/controller"
 
 ## Kubernetes components
 # kubeadm_download_url: "{{ files_repo }}/kubernetes/{{ kube_version }}/kubeadm"

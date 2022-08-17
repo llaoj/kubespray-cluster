@@ -9,11 +9,10 @@ cd kubespray-2.18.1/contrib/offline
 cat temp/files.list
 cat temp/images.list
 
-# download files and upload to aliyun oss
+echo "Download files and upload to OSS"
 wget -qx -P temp/files -i temp/files.list
 tree temp/
-wget -q https://gosspublic.alicdn.com/ossutil/1.7.13/ossutil64
-chmod 755 ossutil64
+wget -q https://gosspublic.alicdn.com/ossutil/1.7.13/ossutil64 && chmod 755 ossutil64
 ./ossutil64 \
   -e oss-cn-beijing.aliyuncs.com \
   -i LTAI5tQ4EusZj1ngxtLJqVW2 \
@@ -21,9 +20,16 @@ chmod 755 ossutil64
   cp temp/files/ oss://rutron/kubernetes/ -ruf --acl=public-read
 
 echo "Copy images to ACR"
+cat >> temp/images.list <<EOF
+quay.io/metallb/speaker:v0.10.3
+quay.io/metallb/controller:v0.10.3
+EOF
 skopeo login -u rutronnet@163.com -p AxzkdEMiS7u@6s9 registry.cn-beijing.aliyuncs.com
-for image in $(cat temp/images.list); do 
+for image in $(cat temp/images.list)
+do 
 	myimage=${image#*/}
 	myimage=registry.cn-beijing.aliyuncs.com/llaoj/${myimage/\//_}
-	echo ${myimage}
+	echo $myimage >> temp/myimages.list
+	skopeo copy docker://${image} docker://${myimage}
 done
+cat temp/myimages.list
