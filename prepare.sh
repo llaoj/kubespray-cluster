@@ -4,7 +4,7 @@ kubespray_version=v2.18.1
 
 wget -O kubespray-src.zip https://github.com/kubernetes-sigs/kubespray/archive/refs/tags/${kubespray_version}.zip
 mkdir kubespray-src
-unzip -q -d kubespray-src kubespray-src.zip
+unzip -d ./kubespray-src kubespray-src.zip
 
 cp -r inventory/mycluster kubespray-src/inventory/
 cd kubespray-src/contrib/offline
