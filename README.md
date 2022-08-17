@@ -7,7 +7,7 @@ docker run --rm -it \
   -v ${PWD}/inventory/mycluster:/kubespray/inventory/mycluster \
   -v ${PWD}/files-images.yaml:/kubespray/inventory/mycluster/all/files-images.yaml \
   -v ${HOME}/.ssh/id_rsa:/root/.ssh/id_rsa \
-  registry.cn-beijing.aliyuncs.com/llaoj/kubespray:v2.18.0 bash
+  registry.cn-beijing.aliyuncs.com/llaoj/kubespray_kubespray:v2.18.1 bash
 ```
 
 ## Install cluster
