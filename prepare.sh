@@ -3,14 +3,14 @@
 kubespray_version=v2.18.1
 
 wget -O kubespray-src.zip https://github.com/kubernetes-sigs/kubespray/archive/refs/tags/${kubespray_version}.zip
-mkdir kubespray-src
-unzip -d ./kubespray-src kubespray-src.zip
+unzip -q kubespray-src.zip
+unzip -l kubespray-src.zip
 
-cp -r inventory/mycluster kubespray-src/inventory/
-cd kubespray-src/contrib/offline
-./generate_list.sh -i inventory/mycluster/inventory.ini
-cat temp/files.list
-cat temp/images.list
+# cp -r inventory/mycluster kubespray-src/inventory/
+# cd kubespray-src/contrib/offline
+# ./generate_list.sh -i inventory/mycluster/inventory.ini
+# cat temp/files.list
+# cat temp/images.list
 
 # echo "Download files and upload to OSS"
 # wget -qx -P temp/files -i temp/files.list
