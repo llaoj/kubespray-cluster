@@ -26,5 +26,4 @@ for image in $(cat temp/images.list); do
 	myimage=${image#*/}
 	myimage=registry.cn-beijing.aliyuncs.com/llaoj/${myimage/\//_}
 	echo ${myimage}
-	skopeo copy docker://${image} docker://${myimage}; 
 done
