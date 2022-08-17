@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -vx
+set -x
 KUBSPRAY_VERSION=v2.18.1
 
 wget -O kubespray-src.zip https://github.com/kubernetes-sigs/kubespray/archive/refs/tags/${KUBSPRAY_VERSION}.zip
