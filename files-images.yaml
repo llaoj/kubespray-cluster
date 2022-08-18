@@ -21,6 +21,7 @@ containerd_download_url: "{{ oss_files_repo }}/github.com/containerd/containerd/
 
 # images
 llaoj_image_repo: "registry.cn-beijing.aliyuncs.com/llaoj"
+kube_image_repo: "{{ llaoj_image_repo }}"
 netcheck_server_image_repo: "{{ llaoj_image_repo }}/mirantis_k8s-netchecker-server"
 netcheck_agent_image_repo: "{{ llaoj_image_repo }}/mirantis_k8s-netchecker-agent"
 etcd_image_repo: "{{ llaoj_image_repo }}/coreos_etcd"
