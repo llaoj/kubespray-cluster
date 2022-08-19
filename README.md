@@ -15,3 +15,9 @@ docker run --rm -it \
 ```shell
 ansible-playbook -i inventory/mycluster/inventory.ini cluster.yml
 ```
+
+## Add node
+
+```shell
+ansible-playbook -i inventory/mycluster/inventory.ini scale.yml
+```
