@@ -15,8 +15,8 @@ wget -O kubespray-src.zip https://github.com/kubernetes-sigs/kubespray/archive/r
 unzip -q kubespray-src.zip
 SRC_PATH=$(unzip -l kubespray-src.zip | sed -n '5p' | awk '{print $4}')
 
-cd $SRC_PATH
-./contrib/offline/generate_list.sh -i inventory/sample/inventory.ini
+cd ${SRC_PATH}contrib/offline
+./generate_list.sh -i inventory/sample/inventory.ini
 cat temp/files.list
 cat temp/images.list
 
