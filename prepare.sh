@@ -15,9 +15,8 @@ wget -O kubespray-src.zip https://github.com/kubernetes-sigs/kubespray/archive/r
 unzip -q kubespray-src.zip
 SRC_PATH=$(unzip -l kubespray-src.zip | sed -n '5p' | awk '{print $4}')
 
-cp -r inventory/mycluster ${SRC_PATH}inventory/
-cd ${SRC_PATH}contrib/offline
-./generate_list.sh -i inventory/mycluster/inventory.ini
+cd $SRC_PATH
+./contrib/offline/generate_list.sh -i inventory/sample/inventory.ini
 cat temp/files.list
 cat temp/images.list
 
@@ -35,6 +34,7 @@ echo "Copy images to ACR"
 cat >> temp/images.list <<EOF
 quay.io/metallb/speaker:v0.10.3
 quay.io/metallb/controller:v0.10.3
+quay.io/kubespray/kubespray:v2.18.1
 EOF
 skopeo login -u $ACR_USERNAME -p $ACR_PASSWORD $ACR_REPO
 for image in $(cat temp/images.list)
