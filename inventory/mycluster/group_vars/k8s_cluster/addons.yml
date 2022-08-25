@@ -140,7 +140,7 @@ metallb_enabled: true
 metallb_speaker_enabled: true
 metallb_avoid_buggy_ips: true
 metallb_ip_range:
-  - "10.206.65.234-10.206.253"
+  - "10.206.65.234-10.206.65.253"
 # metallb_pool_name: "loadbalanced"
 # matallb_auto_assign: true
 metallb_speaker_nodeselector:

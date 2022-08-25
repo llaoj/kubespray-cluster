@@ -20,3 +20,12 @@ ansible-playbook -i inventory/mycluster/inventory.ini cluster.yml
 ```shell
 ansible-playbook -i inventory/mycluster/inventory.ini scale.yml
 ```
+
+## upgrade cluster
+
+```shell
+ansible-playbook upgrade-cluster.yml -b -i inventory/mycluster/inventory.ini -e kube_version=v1.22.8
+
+ansible-playbook cluster.yml -i inventory/mycluster/inventory.ini -e kube_version=v1.22.8 -e upgrade_cluster_setup=true
+
+```
