@@ -14,4 +14,4 @@ jobs:
       - uses: actions/checkout@v2
       - name: Prepare files and images
         run: |
-          bash prepare.sh
+          bash v1.22.17/prepare.sh
