@@ -18,7 +18,7 @@ wget -O kubespray-src.zip https://github.com/kubernetes-sigs/kubespray/archive/r
 unzip -q kubespray-src.zip
 SRC_PATH=$(unzip -l kubespray-src.zip | sed -n '5p' | awk '{print $4}')
 
-sed "s/\(^kube_version: \).*/\1${KUBE_VERSION}/" "${SRC_PATH}"inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
+sed -i "s/\(^kube_version: \).*/\1${KUBE_VERSION}/" "${SRC_PATH}"inventory/sample/group_vars/k8s_cluster/k8s-cluster.yml
 cd "${SRC_PATH}"contrib/offline || return
 ./generate_list.sh -i inventory/sample/inventory.ini
 cat temp/files.list
