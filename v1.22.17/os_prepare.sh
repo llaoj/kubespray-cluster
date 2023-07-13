@@ -3,8 +3,8 @@
 set -x
 
 # disable SELINUX
-setenforce 0
-sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/selinux/config
+# setenforce 0
+# sed -i 's/^SELINUX=.*/SELINUX=disabled/g' /etc/selinux/config
 
 # disable swap
 swapoff -a && sysctl -w vm.swappiness=0
@@ -50,9 +50,9 @@ curl http://gitlab.cosmoplat.com/21001713/deployment-manual/-/raw/master/95-k8s-
 sysctl --system
 
 # disable NetworkManager
-systemctl stop NetworkManager
-systemctl disable NetworkManager
-systemctl status NetworkManager
+# systemctl stop NetworkManager
+# systemctl disable NetworkManager
+# systemctl status NetworkManager
 
 # disable firewalld
 systemctl stop firewalld.service
