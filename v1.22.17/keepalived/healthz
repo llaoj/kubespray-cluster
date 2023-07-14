@@ -1,0 +1,18 @@
+#!/bin/sh
+
+VIP=$1
+
+errorExit() {
+    echo "*** $*" >/proc/1/fd/1
+    exit 1
+}
+
+echo "health check..." >/proc/1/fd/1
+if ! curl --silent --max-time 3 -k https://127.0.0.1:6443/livez | grep -q "ok"; then
+    errorExit "Error GET https://127.0.0.1:6443/livez"
+fi
+if ip addr | grep -q "$VIP"; then
+    if ! curl --silent --max-time 3 -k https://"$VIP":6443/livez | grep -q "ok"; then
+        errorExit "Error GET https://${VIP}:6443/livez"
+    fi
+fi
