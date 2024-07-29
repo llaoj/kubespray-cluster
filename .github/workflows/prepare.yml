@@ -16,7 +16,7 @@ jobs:
         run: |
           bash v1.22.17/prepare.sh
   prepare-arm64:
-    runs-on: macos-14
+    runs-on: macos-14-arm64
     steps:
       - uses: actions/checkout@v4
       - name: Prepare files and images
