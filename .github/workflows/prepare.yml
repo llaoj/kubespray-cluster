@@ -16,4 +16,5 @@ jobs:
       # - uses: actions/checkout@v2
       - name: Prepare files and images
         run: |
+          brew install ansible
           bash v1.22.17/prepare.sh
