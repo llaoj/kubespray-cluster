@@ -8,12 +8,17 @@ on:
     # - 'v[0-9].[0-9]+.[0-9]+**'
 
 jobs:
-  prepare:
-    # runs-on: ubuntu-20.04
-    runs-on: macos-13
+  prepare-amd64:
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
-      # - uses: actions/checkout@v2
+      - name: Prepare files and images
+        run: |
+          bash v1.22.17/prepare.sh
+  prepare-arm64:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
       - name: Prepare files and images
         run: |
           brew install ansible
