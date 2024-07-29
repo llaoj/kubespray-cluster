@@ -8,11 +8,8 @@ on:
 jobs:
   migrate:
     runs-on: ubuntu-20.04
-    env:
-      OSS_ACCESS_KEY_ID: ${{ OSS_ACCESS_KEY_ID }}
-      OSS_ACCESS_KEY: ${{ OSS_ACCESS_KEY }}
     steps:
       - uses: actions/checkout@v4
       - name: migrate file to OSS
         run: |
-          bash v1.22.17/migrate-files.sh
+          bash v1.22.17/migrate-files.sh ${{ OSS_ACCESS_KEY_ID }} ${{ OSS_ACCESS_KEY }}
