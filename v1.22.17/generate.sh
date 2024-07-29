@@ -8,7 +8,7 @@ wget -O kubespray-src.zip https://github.com/kubernetes-sigs/kubespray/archive/r
 unzip -q kubespray-src.zip
 SRC_PATH=$(unzip -l kubespray-src.zip | sed -n '5p' | awk '{print $4}')
 
-sed -i "s/\(^kube_version: \).*/\1${KUBE_VERSION}/" "${SRC_PATH}"roles/kubespray-defaults/defaults/main.yaml
+sed -i '' -e "s/\(^kube_version: \).*/\1${KUBE_VERSION}/" "${SRC_PATH}"roles/kubespray-defaults/defaults/main.yaml
 cd "${SRC_PATH}"contrib/offline || return
 ./generate_list.sh
 cat temp/files.list
