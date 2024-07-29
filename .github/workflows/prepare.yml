@@ -2,16 +2,18 @@ name: buid images
 
 on:
   push:
-    # branches:
-    # - main
-    tags:
-    - 'v[0-9].[0-9]+.[0-9]+**'
+    branches:
+    - main
+    # tags:
+    # - 'v[0-9].[0-9]+.[0-9]+**'
 
 jobs:
   prepare:
-    runs-on: ubuntu-20.04
+    # runs-on: ubuntu-20.04
+    runs-on: macos-13
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      # - uses: actions/checkout@v2
       - name: Prepare files and images
         run: |
           bash v1.22.17/prepare.sh
