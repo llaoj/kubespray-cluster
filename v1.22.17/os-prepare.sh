@@ -7,12 +7,9 @@ set -xe
 INTERFACE="eth0"
 
 function upgrade_kernel() {
-  rpm --import https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
-  yum install -y https://www.elrepo.org/elrepo-release-7.el7.elrepo.noarch.rpm
-  sed -i 's/mirrorlist=/#mirrorlist=/g' /etc/yum.repos.d/elrepo.repo
-  sed -i 's/elrepo.org\/linux/mirrors.aliyun.com\/elrepo/g' /etc/yum.repos.d/elrepo.repo
-  yum makecache
-  yum --enablerepo=elrepo-kernel install kernel-lt -y
+  curl https://llaoj.oss-cn-beijing.aliyuncs.com/elrepo/archive/kernel/el7/x86_64/RPMS/kernel-lt-5.4.278-1.el7.elrepo.x86_64.rpm  -o /tmp/kernel-lt-5.4.278-1.el7.elrepo.x86_64.rpm
+  rpm -ivh /tmp/kernel-lt-5.4.278-1.el7.elrepo.x86_64.rpm
+
   # 通过下面的命令查看内核启动顺序
   # awk -F\' '$1=="menuentry " {print i++ ": " $2}' /boot/grub2/grub.cfg
   kernel_index=$(awk -F\' '$1=="menuentry " {print i++ ": " $2}' /boot/grub2/grub.cfg | (grep "CentOS Linux (5." || true) | awk -F: '{print $1}')
