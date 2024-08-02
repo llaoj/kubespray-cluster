@@ -46,6 +46,12 @@ function check_os() {
 }
 
 function prepare() {
+  # 更换国内Yum源
+  mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+  curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+  yum clean all
+  yum makecache
+
   yum update -y
   yum install -y bash-completion conntrack-tools ipset ipvsadm libseccomp nfs-utils psmisc rsync socat
 
