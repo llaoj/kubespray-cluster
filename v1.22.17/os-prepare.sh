@@ -43,13 +43,23 @@ function check_os() {
 }
 
 function prepare() {
+  echo "[debug] disable NetworkManager"
+  systemctl disable NetworkManager || true
+  systemctl stop NetworkManager || true
+
+  # use aliyun dns
+  cat <<EOF | sudo tee /etc/resolv.conf
+nameserver 223.5.5.5
+nameserver 223.6.6.6
+EOF
+
   # 更换国内Yum源
   mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
   curl -o /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
   yum clean all
   yum makecache
 
-  yum update -y
+  # yum update -y
   yum install -y bash-completion conntrack-tools ipset ipvsadm libseccomp nfs-utils psmisc rsync socat
 
   echo "[debug] disable swap"
@@ -95,13 +105,20 @@ EOF
   curl https://llaoj.oss-cn-beijing.aliyuncs.com/config/95-k8s-sysctl.conf -o /etc/sysctl.d/95-k8s-sysctl.conf
   sysctl --system
 
-  echo "[debug] disable NetworkManager"
-  systemctl disable NetworkManager || true
-  systemctl stop NetworkManager || true
-
   echo "[debug] disable firewalld"
   systemctl disable firewalld.service || true
   systemctl stop firewalld.service || true
+
+  # chrony
+  yum -y install chrony
+  systemctl enable chronyd
+  sed -i "s/0.centos.pool.ntp.org/ntp.aliyun.com/g" /etc/chrony.conf
+  sed -i "s/1.centos.pool.ntp.org/ntp1.aliyun.com/g" /etc/chrony.conf
+  sed -i "s/2.centos.pool.ntp.org/ntp2.aliyun.com/g" /etc/chrony.conf
+  sed -i "s/3.centos.pool.ntp.org/ntp3.aliyun.com/g" /etc/chrony.conf
+  systemctl restart chronyd
+  timedatectl set-timezone Asia/Shanghai
+  chronyc -a makestep
 }
 
 check_os
