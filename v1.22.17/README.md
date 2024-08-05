@@ -44,7 +44,21 @@ docker run --rm -t --net=host \
   -v ${HOME}/.ssh:/root/.ssh \
   --entrypoint /bin/bash \
   registry.cn-beijing.aliyuncs.com/llaoj/kubespray_kubespray:v2.18.2 \
-  -c chmod +x /kubespray/inventory/mycluster/bootstrap.sh && /kubespray/inventory/mycluster/bootstrap.sh
+  -c "chmod +x /kubespray/inventory/mycluster/bootstrap.sh && /kubespray/inventory/mycluster/bootstrap.sh"
 ```
 
 > 如果执行到Gather necessary facts (hardware)遇到时卡住. 可能是因为原来的环境有残留的挂载没有卸载干净. 进入目标服务器, 参考该问题页面解决: https://serverfault.com/questions/630253/ansible-stuck-on-gathering-facts
+
+### 配置节点
+
+添加标签
+
+```
+kubectl label nodes <node-name>  dedicated=ingress-nginx
+```
+
+添加污点 确保只有ingress-controller在上面
+
+```
+kubectl taint nodes <node-name> dedicated=ingress-nginx:NoSchedule
+```
